@@ -7,10 +7,14 @@ jobs:
   build:
     docker:
       - image: circleci/node:7.10
-    working_directory: ~/repo
+    working_directory: ~/
     steps:
       - checkout
       # Download and cache dependencies
+      - run: pwd
+      - run: ls -la
+      - run: cd projectTwo
+      - run: ls 
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
