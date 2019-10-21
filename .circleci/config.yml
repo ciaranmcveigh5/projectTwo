@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:7.10
-    working_directory: ~/
+    working_directory: ~/projectTwo
     steps:
       - checkout
       # Download and cache dependencies
@@ -17,7 +17,7 @@ jobs:
       - run: ls 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "my-app/package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -26,7 +26,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
       # run tests!
       - run: echo testing
