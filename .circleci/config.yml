@@ -33,16 +33,15 @@ jobs:
           root: . # Persist current working directory
           paths: ./* # Glob. Will persist everything in folder
 
-test:
-  docker:
-    - image: circleci/node:7.10
-  working_directory: ~/projectTwo
-  steps:
-    - attach_workspace:
-        at: .
-    - checkout
-    - pwd
-    - ls
+  test:
+    docker:
+      - image: circleci/node:7.10
+    working_directory: ~/projectTwo
+    steps:
+      - attach_workspace:
+          at: .
+      - pwd
+      - ls
 
 # pushTos3:
 #   docker:
