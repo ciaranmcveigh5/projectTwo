@@ -50,14 +50,14 @@ test:
 
 
 
-# workflows:
-#   version: 2
-#   build_test_push:
-#     jobs:
-#       - build
-#       - test:
-#           requires:
-#             - build
+workflows:
+  version: 2
+  build_test_push:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
 #       - pushToS3:
 #           requires:
 #             - test
