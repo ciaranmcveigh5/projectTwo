@@ -31,12 +31,10 @@ jobs:
             npm install
             npm build
 
-      - run:
-          name: Push to S3
-          aws-s3/sync:
-            from: my-app/build
-            to: 's3://projecttworeact/'
-            overwrite: true
+      - aws-s3/sync:
+          from: my-app/build
+          to: 's3://projecttworeact/'
+          overwrite: true
     
       # - save_cache:
       #     paths:
