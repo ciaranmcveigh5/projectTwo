@@ -2,7 +2,9 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.0
 jobs:
   build:
     docker:
@@ -27,3 +29,35 @@ jobs:
 
       # run tests!
       - run: echo testing
+      - persist_to_workspace:
+          root: . # Persist current working directory
+          paths: ./* # Glob. Will persist everything in folder
+
+test:
+  docker:
+    - image: circleci/node:7.10
+  working_directory: ~/projectTwo
+  steps:
+    - attach_workspace:
+        at: .
+    - pwd
+    - ls
+
+# pushTos3:
+#   docker:
+#     - image: circleci/node:7.10
+#   steps:
+
+
+
+# workflows:
+#   version: 2
+#   build_test_push:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
+#       - pushToS3:
+#           requires:
+#             - test
