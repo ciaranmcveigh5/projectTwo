@@ -14,11 +14,11 @@ jobs:
       - checkout
       # Download and cache dependencies
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "my-app/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "my-app/package.json" }}
+      #       # fallback to using the latest cache if no exact match is found
+      #       - v1-dependencies-
 
       - run:
           name: Run Tests
@@ -28,6 +28,7 @@ jobs:
       - run:
           name: Build Artifact
           command: |
+            npm install
             npm build
 
       - run:
@@ -37,10 +38,10 @@ jobs:
             to: 's3://projecttworeact/'
             overwrite: true
     
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "my-app/package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
 
 
