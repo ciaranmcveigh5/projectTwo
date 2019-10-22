@@ -40,8 +40,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - pwd
-      - ls
+      - run: pwd
+      - run: ls
 
 # pushTos3:
 #   docker:
