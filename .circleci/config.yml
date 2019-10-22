@@ -20,28 +20,39 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run:
+          name: Run Tests
+          command: |
+            echo "pretend testing"
 
+      - run:
+          name: Build Artifact
+          command: |
+            npm build
+
+      - run:
+          name: Push to S3
+          - aws-s3/sync:
+            from: my-app/build
+            to: 's3://projecttworeact/'
+            overwrite: true
+    
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
-      # run tests!
-      - run: echo testing
-      - persist_to_workspace:
-          root: . # Persist current working directory
-          paths: ./* # Glob. Will persist everything in folder
 
-  test:
-    docker:
-      - image: circleci/node:7.10
-    working_directory: ~/projectTwo
-    steps:
-      - attach_workspace:
-          at: .
-      - run: pwd
-      - run: ls
+
+  # test:
+  #   docker:
+  #     - image: circleci/node:7.10
+  #   working_directory: ~/projectTwo
+  #   steps:
+  #     - attach_workspace:
+  #         at: .
+  #     - run: pwd
+  #     - run: ls
 
 # pushTos3:
 #   docker:
@@ -50,13 +61,13 @@ jobs:
 
 
 
-workflows:
-  version: 2
-  build_test_push:
-    jobs:
-      - build
-      - test:
-          requires:
+# workflows:
+#   version: 2
+#   build_test_push:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
             - build
 #       - pushToS3:
 #           requires:
