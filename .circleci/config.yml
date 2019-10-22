@@ -68,7 +68,7 @@ jobs:
 #       - build
 #       - test:
 #           requires:
-            - build
+            # - build
 #       - pushToS3:
 #           requires:
 #             - test
