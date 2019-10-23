@@ -55,7 +55,11 @@ jobs:
           at: .
       - run: pwd
       - run: ls
-      - run: cd my-app
+      - run: |
+          ls my-app
+          cd my-app
+          ls
+
       - run: ls
       - run: cd build
       - run: ls
