@@ -52,7 +52,7 @@ jobs:
       - attach_workspace:
           at: .
       - aws-s3/sync:
-          from: my-app/build
+          from: ./my-app/build
           to: 's3://projecttworeact/'
           overwrite: true
 
