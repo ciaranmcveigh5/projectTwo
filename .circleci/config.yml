@@ -35,7 +35,7 @@ jobs:
 
       - persist_to_workspace:
           root: . # Persist current working directory
-          paths: .my-app/build/* # Glob. Will persist everything in folder
+          paths: my-app/build/* # Glob. Will persist everything in folder
 
       
     
