@@ -5,7 +5,6 @@ import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import Contact from './components/pages/ContactUs';
-import uuid from 'uuid'
 import axios from 'axios'
 
 import './App.css';
