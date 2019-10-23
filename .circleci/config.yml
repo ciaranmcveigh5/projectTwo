@@ -55,7 +55,7 @@ jobs:
           at: .
       - aws-s3/sync:
           from: ~/projectTwo/my-app/build
-          to: 's3://projecttworeact/'
+          to: 's3://static.ciaranmcveigh.com/'
           overwrite: true
 
 # pushTos3:
