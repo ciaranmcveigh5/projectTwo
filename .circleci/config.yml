@@ -51,20 +51,8 @@ jobs:
       - image: 'circleci/python:2.7'
     working_directory: ~/projectTwo
     steps:
-      - run: pwd
-      - run: ls
       - attach_workspace:
           at: .
-      - run: pwd
-      - run: ls
-      - run: |
-          ls my-app
-          cd my-app
-          ls
-
-      - run: ls
-      - run: cd build
-      - run: ls
       - aws-s3/sync:
           from: ~/projectTwo/my-app/build
           to: 's3://projecttworeact/'
