@@ -28,12 +28,14 @@ jobs:
       - run:
           name: Build Artifact
           command: |
+            cd my-app
             npm install
             npm build
+            ls
 
       - persist_to_workspace:
           root: . # Persist current working directory
-          paths: ./* # Glob. Will persist everything in folder
+          paths: .my-app/build/* # Glob. Will persist everything in folder
 
       
     
