@@ -30,7 +30,7 @@ jobs:
           command: |
             cd my-app
             npm install
-            npm build
+            npm run build
             ls
 
       - persist_to_workspace:
