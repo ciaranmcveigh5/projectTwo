@@ -55,6 +55,10 @@ jobs:
           at: .
       - run: pwd
       - run: ls
+      - run: cd my-app
+      - run: ls
+      - run: cd build
+      - run: ls
       - aws-s3/sync:
           from: ~/projectTwo/my-app/build
           to: 's3://projecttworeact/'
